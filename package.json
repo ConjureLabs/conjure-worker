@@ -1,0 +1,27 @@
+{
+  "name": "conjure-worker",
+  "version": "0.0.0",
+  "description": "Conjure MQ worker",
+  "private": true,
+  "main": "./server",
+  "scripts": {
+    "dev": "node ./server/",
+    "lint": "bash ./bash/npm/lint.sh",
+    "start": "bash ./bash/npm/start.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConjureLabs/conjure-worker.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/ConjureLabs/conjure-worker/issues"
+  },
+  "homepage": "https://github.com/ConjureLabs/conjure-worker#readme",
+  "dependencies": {
+    "async": "^2.3.0",
+    "conjure-core": "git+ssh://git@github.com:ConjureLabs/conjure-core.git",
+    "debug": "2.6.0",
+    "request": "^2.81.0"
+  }
+}
