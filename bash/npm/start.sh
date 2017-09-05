@@ -6,12 +6,12 @@ BASE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 
 set -e; # die on any error
 
-export NODE_PATH=$(cd $APP_DIR; cd server; pwd);
+export NODE_PATH=$(cd $APP_DIR; cd lib; pwd);
 source $APP_DIR/.profile;
 
 set +e; # no longer die on any error
 
-( cd $APP_DIR && nodemon --legacy-watch ./server/ ) &
+( cd $APP_DIR && nodemon --legacy-watch ./lib/ "$@" ) &
 PIDS[1]=$!;
 announce "App running";
 PIDS[2]=$!;
