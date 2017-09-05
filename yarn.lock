@@ -110,9 +110,8 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
 
 "conjure-core@git+ssh://git@github.com:ConjureLabs/conjure-core.git":
   version "0.0.0"
-  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#824aa8087fce08a3f93638e5e0958dca673e34ef"
+  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#3f06a97d5ff829333f49168ce5070a3f15225f56"
   dependencies:
-    uid "^0.0.2"
     amqp "^0.2.6"
     app-root-path "^2.0.1"
     async "^2.5.0"
