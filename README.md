@@ -19,4 +19,5 @@ CONJURE_SUBSCRIPTION_NOTATION='#.pizza' yarn start
 As per `RabbitMQ's convention for topic names](https://www.rabbitmq.com/tutorials/tutorial-five-python.html):
 
 `*` can substitute for exactly one word
+
 `#` can substitute for zero or more words
