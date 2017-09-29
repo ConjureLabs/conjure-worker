@@ -1,19 +1,17 @@
 # OS & initial setup
-FROM centos:centos7
+FROM debian:stable-20170907
+
+# install git
+RUN apt-get install git-core
 
 # assuming env is node
-RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-RUN yum install -y tar curl sudo which wget htop vim-enhanced xz
-RUN wget -O ~/node-v6.9.0-linux-x64.tar.xz https://nodejs.org/dist/v6.9.0/node-v6.9.0-linux-x64.tar.xz && \
-  tar -C /usr/local --strip-components 1 -xJf ~/node-v6.9.0-linux-x64.tar.xz
+RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+RUN apt-get install -y nodejs
 
 # user & env setup
 USER root
 ENV HOME /root
 WORKDIR /var/conjure/code
-
-# basics
-RUN yum install -y git
 
 # pull codebase & branch
 # using CACHEBUST to prevent caching of git clone - see https://github.com/moby/moby/issues/1996#issuecomment-185872769
@@ -22,4 +20,4 @@ ARG CACHEBUST=<CACHEBUST>
 RUN git init
 RUN git pull <REPO> <BRANCH>
 
-# rest is set up dynamically
+# more will be appended
