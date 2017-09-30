@@ -1,10 +1,24 @@
 ### Conjure Dockerfile Setup
 
+Build the base dockerfile
+
+```bash
+# builds the dockerfile used as a FROM in others
+. ./build/dockerfile-template.sh "base.Dockerfile" "conjure:base" ""
+```
+
+Build the Node (or whatever language) template used by your branch
+
+```bash
+# builds the dockerfile used as a FROM in others
+. ./build/dockerfile-template.sh "/node-v6.Dockerfile" "conjure:node-v6" "conjure:base"
+```
+
 Build the pr branch
 
 ```bash
 # builds the dockerfile
-. ./build.sh "git@github.com:WiskeyTango/mock-web-repo.git" <branch-name> <container-name> "npm install"
+. ./build/project.sh "conjure:node-v6" "git@github.com:WiskeyTango/mock-web-repo.git" <branch-name> <container-name> "npm install"
 ```
 
 Now run that container in the background
