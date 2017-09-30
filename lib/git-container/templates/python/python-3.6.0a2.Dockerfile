@@ -1,6 +1,6 @@
 RUN \
   cd /tmp && \
-  curl -o ./Python-3.6.0a2.tgz https://www.python.org/ftp/python/3.6.0a2/Python-3.6.0a2.tgz && \
+  curl -o ./Python-3.6.0a2.tgz https://www.python.org/ftp/python/3.6.0/Python-3.6.0a2.tgz && \
   tar -xzf ./Python-3.6.0a2.tgz && \
   cd ./Python-3.6.0a2 && \
   ./configure && \
