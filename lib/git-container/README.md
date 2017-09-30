@@ -11,14 +11,14 @@ Build the Node (or whatever language) template used by your branch
 
 ```bash
 # builds the dockerfile used as a FROM in others
-. ./build/dockerfile-template.sh "/node-v6.Dockerfile" "conjure:node-v6" "conjure:base"
+. ./build/dockerfile-template.sh "/node/node-6.x.Dockerfile" "conjure:node-6-x" "conjure:base"
 ```
 
 Build the pr branch
 
 ```bash
 # builds the dockerfile
-. ./build/project.sh "conjure:node-v6" "git@github.com:WiskeyTango/mock-web-repo.git" <branch-name> <container-name> "npm install"
+. ./build/project.sh "conjure:node-6-x" "git@github.com:WiskeyTango/mock-web-repo.git" <branch-name> <container-name> "npm install"
 ```
 
 Now run that container in the background
