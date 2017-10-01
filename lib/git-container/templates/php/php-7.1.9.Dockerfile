@@ -1,7 +1,10 @@
+# needed for `./configure`
+RUN apt-get install -y libxml2-dev
+
 RUN \
   cd /tmp && \
-  curl -o ./php-7.1.9.tar.bz2 http://php.net/get/php-7.1.9.tar.bz2/from/this/mirror && \
-  tar -xjf ./php-7.1.9.tar.bz2 && \
+  curl -o ./php-7.1.9.tar.gz http://www.php.net/distributions/php-7.1.9.tar.gz && \
+  tar -zxf ./php-7.1.9.tar.gz && \
   cd php-7.1.9 && \
   ./configure && \
   make && \
