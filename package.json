@@ -5,9 +5,9 @@
   "private": true,
   "main": "./server",
   "scripts": {
-    "dev": "node ./server/",
+    "dev": "bash ./bash/npm/start.sh",
     "lint": "bash ./bash/npm/lint.sh",
-    "start": "bash ./bash/npm/start.sh"
+    "start": "node ./server/"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "async": "^2.3.0",
     "body-parser": "^1.18.1",
     "compression": "^1.7.0",
-    "conjure-core": "git+ssh://git@github.com:ConjureLabs/conjure-core.git",
+    "conjure-core": "git+ssh://git@github.com:ConjureLabs/conjure-core.git#task/node-8",
     "cors": "^2.8.4",
     "debug": "2.6.0",
     "express": "^4.15.4",
