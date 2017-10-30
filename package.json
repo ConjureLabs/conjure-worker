@@ -5,9 +5,9 @@
   "private": true,
   "main": "./server",
   "scripts": {
-    "dev": "node ./server/",
-    "lint": "bash ./bash/npm/lint.sh",
-    "start": "bash ./bash/npm/start.sh"
+    "dev": "bash ./bash/yarn/run-dev.sh",
+    "lint": "bash ./bash/yarn/lint.sh",
+    "start": "node ./server/"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,8 @@
     "request": "^2.81.0",
     "socket.io": "^2.0.3",
     "uid": "^0.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "1.12.1"
   }
 }

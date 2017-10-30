@@ -62,11 +62,11 @@ You must use a process arg to define the subscription notation. Wildcards (`*`) 
 E.g.
 
 ```bash
-CONJURE_WORKER_NOTATION="food.dinner.pizza" yarn start
-CONJURE_WORKER_NOTATION="food.dinner.*" yarn start
-CONJURE_WORKER_NOTATION="*" yarn start
-CONJURE_WORKER_NOTATION="*.*.pizza" yarn start
-CONJURE_WORKER_NOTATION="#.pizza" yarn start
+CONJURE_WORKER_NOTATION="food.dinner.pizza" yarn run dev
+CONJURE_WORKER_NOTATION="food.dinner.*" yarn run dev
+CONJURE_WORKER_NOTATION="*" yarn run dev
+CONJURE_WORKER_NOTATION="*.*.pizza" yarn run dev
+CONJURE_WORKER_NOTATION="#.pizza" yarn run dev
 ```
 
 As per [RabbitMQ's convention for topic names](https://www.rabbitmq.com/tutorials/tutorial-five-python.html):
