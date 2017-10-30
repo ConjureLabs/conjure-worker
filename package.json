@@ -5,8 +5,8 @@
   "private": true,
   "main": "./server",
   "scripts": {
-    "dev": "bash ./bash/npm/start.sh",
-    "lint": "bash ./bash/npm/lint.sh",
+    "dev": "bash ./bash/yarn/run-dev.sh",
+    "lint": "bash ./bash/yarn/lint.sh",
     "start": "node ./server/"
   },
   "repository": {
