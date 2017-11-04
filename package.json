@@ -33,6 +33,9 @@
     "uid": "^0.0.2"
   },
   "devDependencies": {
+    "babel-eslint": "8.0.1",
+    "eslint": "4.10.0",
+    "jscs": "3.0.7",
     "nodemon": "1.12.1"
   }
 }
