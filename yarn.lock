@@ -608,7 +608,7 @@ configstore@^3.0.0:
 
 "conjure-core@git+ssh://git@github.com:ConjureLabs/conjure-core.git":
   version "0.0.0"
-  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#d037a2e2acf9fee76b26290f8c6873895d1465c8"
+  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#aadf479b22103b9409d2369af6bd3d51114ef63c"
   dependencies:
     amqp "^0.2.6"
     app-root-path "^2.0.1"
