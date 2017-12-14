@@ -1,7 +1,5 @@
 <p align="center">
-  <strong>c o n j u r e</strong>
-  <kbd>⎔</kbd>
-  <strong>w o r k e r</strong>
+  <kbd>w o r k e r</kbd>
 </p>
 
 # Conjure Worker
