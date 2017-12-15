@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "bash ./bash/yarn/run-dev.sh",
     "lint": "bash ./bash/yarn/lint.sh",
-    "start": "node ./server/"
+    "start": "node ./lib/",
+    "start:master": "node ./lib/ --master"
   },
   "repository": {
     "type": "git",
