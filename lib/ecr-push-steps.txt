@@ -1,2 +1,17 @@
+- install python3
+- install aws (but use homebrew: https://github.com/aws/aws-cli/issues/727)
+- ^ for those steps, see http://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html#awscli-install-osx-path
+
 eval $(XYZ=$(aws ecr get-login --region us-east-1) && printf '%s\n' "${XYZ// -e none/}")
 
+aws ecr create-repository --repository-name conjure/watched-1
+
+docker build -t "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest" -f "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.osFOA81k/0fgj1359wdjh.Dockerfile" "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.osFOA81k"
+
+docker push "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest"
+
+aws ecs create-cluster --cluster-name fargate-cluster
+
+export CURR_DIR=$(pwd);
+
+aws ecs register-task-definition --cli-input-json file://$CURR_DIR/task-def.json
