@@ -3,15 +3,21 @@
     "networkMode": "awsvpc", 
     "containerDefinitions": [
         {
-            "name": "fargate-app", 
-            "image": "conjure/watched-1:latest", 
+            "name": "fargate-container", 
+            "image": "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest", 
             "portMappings": [
                 {
-                    "containerPort": 80, 
-                    "hostPort": 80, 
+                    "containerPort": "3000",
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": "80",
                     "protocol": "tcp"
                 }
-            ], 
+            ],
+            "command": [
+                "node server.js"
+            ],
             "essential": true,
             "memory": 512,
             "cpu": 256
@@ -20,6 +26,8 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
+    "executionRoleArn": "arn:aws:iam::657781215424:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::657781215424:role/ecsTaskExecutionRole",
     "cpu": "256", 
     "memory": "512"
 }

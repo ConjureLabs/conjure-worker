@@ -2,6 +2,10 @@ http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_AWSCLI_Fargate.ht
 
 ---
 
+http://docs.aws.amazon.com/AmazonECR/latest/userguide/ECR_on_ECS.html
+
+---
+
 - install python3
 - install aws (but use homebrew: https://github.com/aws/aws-cli/issues/727)
 - ^ for those steps, see http://docs.aws.amazon.com/cli/latest/userguide/cli-install-macos.html#awscli-install-osx-path
