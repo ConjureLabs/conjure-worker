@@ -15,6 +15,7 @@
                     "protocol": "tcp"
                 }
             ],
+            "workingDirectory": "/var/conjure/code/",
             "command": [
                 "node server.js"
             ],

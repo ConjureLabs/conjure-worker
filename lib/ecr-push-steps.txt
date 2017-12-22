@@ -18,11 +18,11 @@ docker build -t "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:
 
 docker push "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest"
 
-aws ecs create-cluster --cluster-name fargate-cluster
-
 export CURR_DIR=$(pwd);
 
 aws ecs register-task-definition --cli-input-json file://$CURR_DIR/task-def.json
 
-aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:1 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14]}"
+aws ecs create-cluster --cluster-name fargate-cluster
+
+aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:3 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14]}"
 
