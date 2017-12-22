@@ -14,7 +14,10 @@ eval $(XYZ=$(aws ecr get-login --region us-east-1) && printf '%s\n' "${XYZ// -e 
 
 aws ecr create-repository --repository-name conjure/watched-1
 
-docker build -t "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest" -f "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.osFOA81k/0fgj1359wdjh.Dockerfile" "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.osFOA81k"
+# NEED TO CHANGE CORE, STRIP OUT -s IN ID
+# MAY NEED TO CARRY OVER CONTENT FROM ~/.docker/config.json TO SERVERS (set via eval above...)
+
+docker build -t "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest" -f "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.ldjtbsbJ/e7jny912o38.Dockerfile" "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.ldjtbsbJ"
 
 docker push "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest"
 
@@ -26,3 +29,9 @@ aws ecs create-cluster --cluster-name fargate-cluster
 
 aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:3 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14]}"
 
+# getting ip - see https://github.com/pottava/fargate-shell/tree/master/samples/cloud9-go1.8
+
+# WIP
+aws --region us-east-1 ecs describe-tasks \
+  --cluster fargate-cluster \
+  --tasks 4378d4bd-7493-4893-b725-45d10ba655b8
