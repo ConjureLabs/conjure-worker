@@ -7,11 +7,11 @@
             "image": "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest", 
             "portMappings": [
                 {
-                    "containerPort": "3000",
+                    "containerPort": 3000,
                     "protocol": "tcp"
                 },
                 {
-                    "containerPort": "80",
+                    "containerPort": 80,
                     "protocol": "tcp"
                 }
             ],
