@@ -12,22 +12,81 @@ http://docs.aws.amazon.com/AmazonECR/latest/userguide/ECR_on_ECS.html
 
 eval $(XYZ=$(aws ecr get-login --region us-east-1) && printf '%s\n' "${XYZ// -e none/}")
 
-aws ecr create-repository --repository-name conjure/watched-1
+aws ecr create-repository --repository-name conjure/pancakes
 
 # NEED TO CHANGE CORE, STRIP OUT -s IN ID
 # MAY NEED TO CARRY OVER CONTENT FROM ~/.docker/config.json TO SERVERS (set via eval above...)
 
-docker build -t "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest" -f "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.ldjtbsbJ/e7jny912o38.Dockerfile" "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.ldjtbsbJ"
+docker build -t "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/pancakes:latest" -f "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.ldjtbsbJ/e7jny912o38.Dockerfile" "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.ldjtbsbJ"
 
-docker push "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest"
+docker push "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/pancakes:latest"
 
 export CURR_DIR=$(pwd);
 
-aws ecs register-task-definition --cli-input-json file://$CURR_DIR/task-def.json
+# default region must be us-east-1 (For fargate to work...)
+aws ecs register-task-definition --region us-east-1 --cli-input-json file://$CURR_DIR/task-def.json
 
-aws ecs create-cluster --cluster-name fargate-cluster
+aws ecs create-cluster --region us-east-1 --cluster-name fargate-cluster
 
-aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:3 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14]}"
+
+>>> NEW
+
+RUNTASK_RESULT=$(\
+  aws ecs run-task \
+    --region us-east-1 \
+    --cluster fargate-cluster \
+    --task-definition sample-fargate:7 \
+    --launch-type FARGATE \
+    --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14]}" \
+    --count 1 \
+);
+
+aws ecs wait tasks-running \
+  --region us-east-1  \
+  --cluster fargate-cluster \
+  --tasks $( echo ${RUNTASK_RESULT} | jq -r '.tasks[0].taskArn' );
+
+<<< NEW
+
+
+
+
+
+
+
+>>> OLD
+
+aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:7 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}"
+
+<<< OLD
+
+
+
+
+
+
+
+
+
+
+
+
+
+RUNTASK_RESULT=$(\
+  aws ecs run-task \
+    --region us-east-1 \
+    --cluster fargate-cluster \
+    --task-definition sample-fargate \
+    --launch-type FARGATE \
+    --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14]}" \
+    --count 1 \
+);
+
+# NEED jq (brew install jq)
+aws ecs wait tasks-running \
+  --region us-east-1  \
+  --cluster fargate-cluster \
+  --tasks $( echo ${RUNTASK_RESULT} | jq -r '.tasks[0].taskArn' );
 
 # getting ip - see https://github.com/pottava/fargate-shell/tree/master/samples/cloud9-go1.8
 

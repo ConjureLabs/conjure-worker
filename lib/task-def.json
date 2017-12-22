@@ -4,7 +4,7 @@
     "containerDefinitions": [
         {
             "name": "fargate-container", 
-            "image": "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest", 
+            "image": "6577-8121-5424.dkr.ecr.us-east-1.amazonaws.com/conjure/pancakes:latest", 
             "portMappings": [
                 {
                     "containerPort": 3000,
@@ -15,13 +15,24 @@
                     "protocol": "tcp"
                 }
             ],
-            "workingDirectory": "/var/conjure/code/",
-            "command": [
-                "node server.js"
+            "entryPoint": [
+                "/bin/sh",
+                "-c",
+                "node",
+                "server.js"
             ],
+            "workingDirectory": "/var/conjure/code/",
             "essential": true,
             "memory": 512,
-            "cpu": 256
+            "cpu": 256,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/wiz-task",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
         }
     ], 
     "requiresCompatibilities": [
