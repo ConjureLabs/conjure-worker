@@ -15,12 +15,7 @@
                     "protocol": "tcp"
                 }
             ],
-            "entryPoint": [
-                "/bin/sh",
-                "-c",
-                "node",
-                "server.js"
-            ],
+            "entryPoint": null,
             "workingDirectory": "/var/conjure/code/",
             "essential": true,
             "memory": 512,
