@@ -15,7 +15,6 @@
                     "protocol": "tcp"
                 }
             ],
-            "entryPoint": null,
             "workingDirectory": "/var/conjure/code/",
             "essential": true,
             "memory": 512,
