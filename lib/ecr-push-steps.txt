@@ -35,7 +35,7 @@ RUNTASK_RESULT=$(\
   aws ecs run-task \
     --region us-east-1 \
     --cluster fargate-cluster \
-    --task-definition sample-fargate:14 \
+    --task-definition sample-fargate:15 \
     --launch-type FARGATE \
     --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14]}" \
     --count 1 \
@@ -51,12 +51,12 @@ aws ecs wait tasks-running \
 
 
 
-
+# STOPPED (Essential container in task exited)
 
 
 >>> OLD
 
-aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:14 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}"
+aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:15 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}"
 
 <<< OLD
 
