@@ -7,9 +7,11 @@ BASE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 TARGET_TEMPLATE=$(sed 's/[\/&]/\\&/g' <<< $1);
 TARGET_REPO=$(sed 's/[\/&]/\\&/g' <<< $2); # -e?
 TARGET_BRANCH=$(sed 's/[\/&]/\\&/g' <<< $3);
-CONTAINER_NAME=$(sed 's/[\/&]/\\&/g' <<< $4);
-TARGET_PRE_SETUP=$(sed 's/[\/&]/\\&/g' <<< $5);
-TARGET_SETUP=$(sed 's/[\/&]/\\&/g' <<< $6);
+CONTAINER_UID=$(sed 's/[\/&]/\\&/g' <<< $4);
+CONTAINER_NAME=$5;
+AWS_ECR_URL=$6;
+TARGET_PRE_SETUP=$(sed 's/[\/&]/\\&/g' <<< $7);
+TARGET_SETUP=$(sed 's/[\/&]/\\&/g' <<< $8);
 CACHEBUST=$(date +%s);
 
 DOCKERFILE_CONTENT=$(cat "$GIT_CONTAINER_DIR/template.Dockerfile");
@@ -26,6 +28,12 @@ if [ "$TARGET_PRE_SETUP" != "" ]; then
 fi
 DOCKERFILE_CONTENT+=$(echo -e "\nRUN $TARGET_SETUP");
 
-echo "$DOCKERFILE_CONTENT" > "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_NAME.Dockerfile";
+echo "$DOCKERFILE_CONTENT" > "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile";
+echo "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile";
 
-docker build -t "$CONTAINER_NAME:latest" -f "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_NAME.Dockerfile" "$TEMP_PROJECT_DOCKERFILE_DIR";
+eval $(aws ecr get-login | sed 's|https://||')
+
+docker build -t "$AWS_ECR_URL$CONTAINER_NAME:latest" -f "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile" "$TEMP_PROJECT_DOCKERFILE_DIR";
+
+echo "$AWS_ECR_URL$CONTAINER_NAME:latest";
+docker push "$AWS_ECR_URL$CONTAINER_NAME:latest";
