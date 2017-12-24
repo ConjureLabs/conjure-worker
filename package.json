@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/ConjureLabs/conjure-worker#readme",
   "dependencies": {
+    "aws-sdk": "2.167.0",
     "body-parser": "^1.18.1",
     "compression": "^1.7.0",
     "conjure-core": "git+ssh://git@github.com:ConjureLabs/conjure-core.git",
