@@ -32,6 +32,8 @@ const corsOptions = {
 router.options('/', cors(corsOptions));
 router.post('/', cors(corsOptions), (req, res, next) => {
   console.log('FOUND');
+  console.log(req.body);
+  console.log(req.headers);
   res.send({
     yup: true
   });
