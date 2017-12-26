@@ -5,6 +5,7 @@
   "private": true,
   "main": "./server",
   "scripts": {
+    "archive": "git archive -v -o ./conjure-worker.zip --format=zip HEAD",
     "dev": "bash ./bash/yarn/run-dev.sh",
     "lint": "bash ./bash/yarn/lint.sh",
     "start": "node ./server/",
