@@ -19,6 +19,9 @@
             "essential": true,
             "memory": 512,
             "cpu": 256,
+            "command": [
+                "npm start"
+            ],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
