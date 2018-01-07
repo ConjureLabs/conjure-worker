@@ -4,7 +4,7 @@
     "containerDefinitions": [
         {
             "name": "fargate-container", 
-            "image": "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/pancakes:latest", 
+            "image": "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest", 
             "portMappings": [
                 {
                     "containerPort": 3000,
@@ -22,7 +22,7 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/pancakes",
+                    "awslogs-group": "/ecs/watched-1",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 }
