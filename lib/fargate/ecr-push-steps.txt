@@ -40,7 +40,7 @@ RUNTASK_RESULT=$(\
   aws ecs run-task \
     --region us-east-1 \
     --cluster fargate-cluster \
-    --task-definition sample-fargate:18 \
+    --task-definition sample-fargate:19 \
     --launch-type FARGATE \
     --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14]}" \
     --count 1 \
@@ -61,7 +61,7 @@ aws ecs wait tasks-running \
 
 >>> OLD
 
-aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:18 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}"
+aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:19 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}"
 
 <<< OLD
 
