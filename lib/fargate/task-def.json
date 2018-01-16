@@ -3,15 +3,12 @@
     "networkMode": "awsvpc", 
     "containerDefinitions": [
         {
-            "name": "fargate-container", 
+            "name": "watched-1", 
             "image": "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest", 
             "portMappings": [
                 {
-                    "containerPort": 3000,
-                    "protocol": "tcp"
-                },
-                {
-                    "containerPort": 80,
+                    "containerPort": 4320,
+                    "hostPort": 80,
                     "protocol": "tcp"
                 }
             ],
@@ -26,7 +23,10 @@
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 }
-            }
+            },
+            "command": [
+                "npm start"
+            ],
         }
     ], 
     "requiresCompatibilities": [
