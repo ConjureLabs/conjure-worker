@@ -14,7 +14,6 @@ eval $(XYZ=$(aws ecr get-login --region us-east-1) && printf '%s\n' "${XYZ// -e 
 
 aws ecr create-repository --repository-name conjure/watched-1
 
-# NEED TO CHANGE CORE, STRIP OUT -s IN ID
 # MAY NEED TO CARRY OVER CONTENT FROM ~/.docker/config.json TO SERVERS (set via eval above...)
 
 export CURR_DIR=$(pwd);
@@ -40,9 +39,9 @@ RUNTASK_RESULT=$(\
   aws ecs run-task \
     --region us-east-1 \
     --cluster fargate-cluster \
-    --task-definition sample-fargate:19 \
+    --task-definition sample-fargate:22 \
     --launch-type FARGATE \
-    --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14]}" \
+    --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}" \
     --count 1 \
 );
 
@@ -61,7 +60,7 @@ aws ecs wait tasks-running \
 
 >>> OLD
 
-aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:19 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}"
+aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:22 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}"
 
 <<< OLD
 
