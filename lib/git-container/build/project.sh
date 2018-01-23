@@ -29,11 +29,7 @@ fi
 DOCKERFILE_CONTENT+=$(echo -e "\nRUN $TARGET_SETUP");
 
 echo "$DOCKERFILE_CONTENT" > "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile";
-echo "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile";
 
-eval $(aws ecr get-login | sed 's|https://||')
+# eval $(aws ecr get-login | sed 's|https://||')
 
 docker build -t "$AWS_ECR_URL$CONTAINER_NAME:latest" -f "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile" "$TEMP_PROJECT_DOCKERFILE_DIR";
-
-echo "$AWS_ECR_URL$CONTAINER_NAME:latest";
-docker push "$AWS_ECR_URL$CONTAINER_NAME:latest";
