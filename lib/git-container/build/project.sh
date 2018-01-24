@@ -12,8 +12,11 @@ CONTAINER_NAME=$5;
 AWS_ECR_URL=$6;
 TARGET_PRE_SETUP=$(sed 's/[\/&]/\\&/g' <<< $7);
 TARGET_SETUP=$(sed 's/[\/&]/\\&/g' <<< $8);
-START_COMMAND=$(sed 's/[\/&]/\\&/g' <<< $9);
+START_COMMAND=$9;
 CACHEBUST=$(date +%s);
+CONJURE_FILES=$(sed 's/[\/&]/\\&/g' <<< $(cd $GIT_CONTAINER_DIR; cd ./conjure-files; pwd));
+
+echo "$CONJURE_FILES";
 
 DOCKERFILE_CONTENT=$(cat "$GIT_CONTAINER_DIR/template.Dockerfile");
 DOCKERFILE_CONTENT=$(sed "s/<TEMPLATE>/$TARGET_TEMPLATE/g" <<< "$DOCKERFILE_CONTENT");
@@ -29,10 +32,15 @@ if [ "$TARGET_PRE_SETUP" != "" ]; then
 fi
 DOCKERFILE_CONTENT+=$(echo -e "\nRUN $TARGET_SETUP");
 
-DOCKERFILE_CONTENT=$(sed "s/<START>/$START_COMMAND/g" <<< "$DOCKERFILE_CONTENT");
-
 echo "$DOCKERFILE_CONTENT" > "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile";
 
-# eval $(aws ecr get-login | sed 's|https://||')
+# making sure .conjure dir exists
+mkdir "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure";
+# making sub-private dir
+mkdir "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure/.support";
+# copy entrypoint script to .support
+cp "$GIT_CONTAINER_DIR/conjure-files/entrypoint.sh" "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure/.support/";
+# append start command to file
+echo "START_COMMAND" >> "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure/.support/entrypoint.sh";
 
 docker build -t "$AWS_ECR_URL$CONTAINER_NAME:latest" -f "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile" "$TEMP_PROJECT_DOCKERFILE_DIR";
