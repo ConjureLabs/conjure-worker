@@ -12,6 +12,7 @@ CONTAINER_NAME=$5;
 AWS_ECR_URL=$6;
 TARGET_PRE_SETUP=$(sed 's/[\/&]/\\&/g' <<< $7);
 TARGET_SETUP=$(sed 's/[\/&]/\\&/g' <<< $8);
+START_COMMAND=$(sed 's/[\/&]/\\&/g' <<< $9);
 CACHEBUST=$(date +%s);
 
 DOCKERFILE_CONTENT=$(cat "$GIT_CONTAINER_DIR/template.Dockerfile");
@@ -27,6 +28,8 @@ if [ "$TARGET_PRE_SETUP" != "" ]; then
   DOCKERFILE_CONTENT+=$(echo -e "\n$TARGET_PRE_SETUP\n");
 fi
 DOCKERFILE_CONTENT+=$(echo -e "\nRUN $TARGET_SETUP");
+
+DOCKERFILE_CONTENT=$(sed "s/<START>/$START_COMMAND/g" <<< "$DOCKERFILE_CONTENT");
 
 echo "$DOCKERFILE_CONTENT" > "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile";
 
