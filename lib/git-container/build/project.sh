@@ -41,6 +41,6 @@ mkdir "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure/.support";
 # copy entrypoint script to .support
 cp "$GIT_CONTAINER_DIR/conjure-files/entrypoint.sh" "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure/.support/";
 # append start command to file
-echo "START_COMMAND" >> "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure/.support/entrypoint.sh";
+echo "$START_COMMAND" >> "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure/.support/entrypoint.sh";
 
 docker build -t "$AWS_ECR_URL$CONTAINER_NAME:latest" -f "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile" "$TEMP_PROJECT_DOCKERFILE_DIR";
