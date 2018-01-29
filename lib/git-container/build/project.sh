@@ -32,15 +32,13 @@ if [ "$TARGET_PRE_SETUP" != "" ]; then
 fi
 DOCKERFILE_CONTENT+=$(echo -e "\nRUN $TARGET_SETUP");
 
+echo "TEMP DIR: $TEMP_PROJECT_DOCKERFILE_DIR";
+
 echo "$DOCKERFILE_CONTENT" > "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile";
 
-# making sure .conjure dir exists
-mkdir "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure";
-# making sub-private dir
-mkdir "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure/.support";
-# copy entrypoint script to .support
-cp "$GIT_CONTAINER_DIR/conjure-files/entrypoint.sh" "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure/.support/";
+# copy over base entrypoint file, to this project's tmp dir
+cp "$GIT_CONTAINER_DIR/conjure-files/entrypoint.sh" "$TEMP_PROJECT_DOCKERFILE_DIR/entrypoint.sh";
 # append start command to file
-echo "$START_COMMAND" >> "$TEMP_PROJECT_DOCKERFILE_DIR/.conjure/.support/entrypoint.sh";
+echo "$START_COMMAND" >> "$TEMP_PROJECT_DOCKERFILE_DIR/entrypoint.sh";
 
 docker build -t "$AWS_ECR_URL$CONTAINER_NAME:latest" -f "$TEMP_PROJECT_DOCKERFILE_DIR/$CONTAINER_UID.Dockerfile" "$TEMP_PROJECT_DOCKERFILE_DIR";
