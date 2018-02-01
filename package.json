@@ -30,7 +30,8 @@
     "octonode": "^0.8.0",
     "request": "^2.81.0",
     "socket.io": "^2.0.3",
-    "uid": "^0.0.2"
+    "uid": "^0.0.2",
+    "utils": "ConjureLabs/utils"
   },
   "devDependencies": {
     "babel-eslint": "8.0.1",

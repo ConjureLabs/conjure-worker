@@ -3209,6 +3209,10 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
 
+utils@ConjureLabs/utils:
+  version "1.0.0"
+  resolved "https://codeload.github.com/ConjureLabs/utils/tar.gz/02cef9ee289e746591ccf44b55a9d389b9435b92"
+
 uuid@3.1.0, uuid@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
