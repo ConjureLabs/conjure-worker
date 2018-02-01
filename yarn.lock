@@ -643,11 +643,12 @@ configstore@^3.0.0:
 
 "conjure-core@git+ssh://git@github.com:ConjureLabs/conjure-core.git":
   version "0.0.0"
-  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#c7029a52ed19fc4b5c2577356200696efc30000c"
+  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#96e80967c2e54e4bdfe11b2a2db3645ae0b70fa1"
   dependencies:
     amqp "^0.2.6"
     app-root-path "^2.0.1"
     cors "^2.8.3"
+    err ConjureLabs/err
     express "^4.15.4"
     node-yaml "^3.1.1"
     octonode "^0.7.13"
@@ -907,6 +908,10 @@ entities@1.0:
 entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
+
+err@ConjureLabs/err:
+  version "1.0.0"
+  resolved "https://codeload.github.com/ConjureLabs/err/tar.gz/838ff54cfc3b71187a5ec5cf3a6065e8588387b8"
 
 es6-promise@^3.3.1:
   version "3.3.1"

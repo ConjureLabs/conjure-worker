@@ -25,6 +25,7 @@
     "conjure-core": "git+ssh://git@github.com:ConjureLabs/conjure-core.git",
     "cors": "^2.8.4",
     "debug": "2.6.0",
+    "err": "ConjureLabs/err",
     "express": "^4.15.4",
     "morgan": "^1.8.2",
     "octonode": "^0.8.0",
