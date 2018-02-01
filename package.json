@@ -24,6 +24,7 @@
     "compression": "^1.7.0",
     "conjure-core": "git+ssh://git@github.com:ConjureLabs/conjure-core.git",
     "cors": "^2.8.4",
+    "db": "ConjureLabs/db",
     "debug": "2.6.0",
     "err": "ConjureLabs/err",
     "express": "^4.15.4",
