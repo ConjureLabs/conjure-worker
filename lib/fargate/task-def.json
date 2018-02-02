@@ -3,15 +3,12 @@
     "networkMode": "awsvpc", 
     "containerDefinitions": [
         {
-            "name": "fargate-container", 
-            "image": "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/pancakes:latest", 
+            "name": "watched-1", 
+            "image": "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest", 
             "portMappings": [
                 {
-                    "containerPort": 3000,
-                    "protocol": "tcp"
-                },
-                {
-                    "containerPort": 80,
+                    "containerPort": 4320,
+                    "hostPort": 4320,
                     "protocol": "tcp"
                 }
             ],
@@ -22,18 +19,21 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/pancakes",
+                    "awslogs-group": "/ecs/watched-1",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 }
-            }
+            },
+            "command": [
+                "npm start"
+            ]
         }
     ], 
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "executionRoleArn": "arn:aws:iam::657781215424:role/ecsTaskExecutionRole",
-    "taskRoleArn": "arn:aws:iam::657781215424:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::657781215424:role/ecs-full-access",
+    "taskRoleArn": "arn:aws:iam::657781215424:role/ecs-full-access",
     "cpu": "256", 
     "memory": "512"
 }

@@ -7,4 +7,7 @@ ARG CACHEBUST=<CACHEBUST>
 RUN git init
 RUN git pull <REPO> <BRANCH>
 
-# more will be appended
+# adding in entrypoint file, needed to boot the process
+ADD entrypoint.sh /var/conjure/support/entrypoint.sh
+
+# more will be appended, if needed

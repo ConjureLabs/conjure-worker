@@ -12,16 +12,20 @@ http://docs.aws.amazon.com/AmazonECR/latest/userguide/ECR_on_ECS.html
 
 eval $(XYZ=$(aws ecr get-login --region us-east-1) && printf '%s\n' "${XYZ// -e none/}")
 
-aws ecr create-repository --repository-name conjure/pancakes
+aws ecr create-repository --repository-name conjure/watched-1
 
-# NEED TO CHANGE CORE, STRIP OUT -s IN ID
 # MAY NEED TO CARRY OVER CONTENT FROM ~/.docker/config.json TO SERVERS (set via eval above...)
 
-docker build -t "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/pancakes:latest" -f "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.ldjtbsbJ/e7jny912o38.Dockerfile" "/var/folders/r2/b4thjjrd0js3fyp091ydqy0w0000gn/T/tmp.ldjtbsbJ"
-
-docker push "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/pancakes:latest"
-
 export CURR_DIR=$(pwd);
+
+# $( git clone git@github.com:ConjureLabs/mock-web-repo.git poc-proj && cd ./poc-proj && git checkout tmarshall-patch-2 )
+# cp ./poc.Dockerfile ./poc-proj/Dockerfile
+
+docker build -t "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest" -f "$CURR_DIR/poc-proj/Dockerfile" "$CURR_DIR/poc-proj";
+
+# docker run -d -p 4320:4320 657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest npm start
+
+docker push "657781215424.dkr.ecr.us-east-1.amazonaws.com/conjure/watched-1:latest"
 
 # default region must be us-east-1 (For fargate to work...)
 aws ecs register-task-definition --region us-east-1 --cli-input-json file://$CURR_DIR/task-def.json
@@ -35,9 +39,9 @@ RUNTASK_RESULT=$(\
   aws ecs run-task \
     --region us-east-1 \
     --cluster fargate-cluster \
-    --task-definition sample-fargate:15 \
+    --task-definition sample-fargate:22 \
     --launch-type FARGATE \
-    --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14]}" \
+    --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}" \
     --count 1 \
 );
 
@@ -56,7 +60,7 @@ aws ecs wait tasks-running \
 
 >>> OLD
 
-aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:15 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}"
+aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:22 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-315dbc1e],securityGroups=[sg-616f5e14],assignPublicIp='ENABLED'}"
 
 <<< OLD
 
