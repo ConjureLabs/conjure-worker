@@ -90,3 +90,39 @@ It helps to use the [built-in management plugin](https://www.rabbitmq.com/manage
 First, make sure it's enabled. `PATH=$PATH:/usr/local/sbin rabbitmq-plugins enable rabbitmq_management`
 
 Then, you can go to [http://localhost:15672/](http://localhost:15672/).
+
+## Troubleshooting
+
+If you get this error:
+
+```
+github.container.create -->  Error: Build template script exited with code 1
+    at ChildProcess.buildTemplate.on.code (/Users/mars/tmarshall/conjure-worker/lib/classes/Container/create.js:202:25)
+    at emitTwo (events.js:125:13)
+    at ChildProcess.emit (events.js:213:7)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:200:12)
+    github.container.create -->  Error: Build template script exited with code 1
+    at ChildProcess.buildTemplate.on.code (/Users/mars/tmarshall/conjure-worker/lib/classes/Container/create.js:202:25)
+    at emitTwo (events.js:125:13)
+    at ChildProcess.emit (events.js:213:7)
+```
+
+Then you have to make sure docker is running locally.
+
+First make sure that the default machine is created. It's often not, on MacOS.
+
+```sh
+docker-machine start
+```
+
+If that gives you `Error: No machine name(s) specified and no "default" machine exists` then run:
+
+```sh
+docker-machine create default
+```
+
+Now, you can set env vars needed:
+
+```sh
+eval "$(docker-machine env default)"
+```
