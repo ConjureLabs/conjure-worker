@@ -10,7 +10,11 @@ Conjure worker codebase
 
 Queues allow workers to work on tasks as they come in, one at a time.
 
-We use RabbitMQ for queue workers.
+We use Redis, with [Kue](https://github.com/Automattic/kue) for queue workers.
+
+Make sure you have [Redis installed](https://redis.io/topics/quickstart), and then run `redis-server` in a terminal.
+
+Development works with the default connection setup.
 
 ### /subscribers/github/container/create/index.js
 
