@@ -645,7 +645,7 @@ configstore@^3.0.0:
 
 "conjure-core@git+ssh://git@github.com:ConjureLabs/conjure-core.git":
   version "0.0.0"
-  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#344891a2814ab68b75dc3531e626f68a8f08e13f"
+  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#e9901f83acf8978cd79f100aac2b1ddbf22e7445"
   dependencies:
     bee-queue "1.2.2"
     db ConjureLabs/db
