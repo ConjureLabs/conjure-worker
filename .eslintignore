@@ -1,3 +1,5 @@
 node_modules
 ignore/**
 *.log
+lib/docker/
+lib/fargate-reference/
