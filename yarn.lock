@@ -679,7 +679,7 @@ configstore@^3.0.0:
 
 "conjure-core@git+ssh://git@github.com:ConjureLabs/conjure-core.git":
   version "0.0.0"
-  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#0856e93a7094f90210c589eadae013c604e08a0e"
+  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#5496822e3ff18c441b2f46dc4bbaa698cf756258"
   dependencies:
     "@conjurelabs/db" "0.1.0"
     "@conjurelabs/err" "0.0.2"
