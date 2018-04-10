@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@conjurelabs/db@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@conjurelabs/db/-/db-0.1.0.tgz#8fe14e24f7ef334faa04a39d337eeda9974b4c56"
+"@conjurelabs/db@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@conjurelabs/db/-/db-1.0.2.tgz#233609eb9f28fada2ea34330700de8578040569f"
   dependencies:
     "@conjurelabs/err" "0.0.2"
 
@@ -679,15 +679,12 @@ configstore@^3.0.0:
 
 "conjure-core@git+ssh://git@github.com:ConjureLabs/conjure-core.git":
   version "0.0.0"
-  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#95e45a6be9b954adc5821b285327cb2c8c125d66"
+  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#03fb12ab7c0955dab21c6d3f30efb1afbbc47a9f"
   dependencies:
-    "@conjurelabs/db" "0.1.0"
-    "@conjurelabs/err" "0.0.2"
     aws-sdk "2.222.1"
     bee-queue "1.2.2"
     node-yaml "^3.1.1"
     octonode "^0.7.13"
-    pg "^7.4.0"
     postmark "1.5.0"
     request "^2.81.0"
     request-promise-native "1.0.5"
@@ -714,8 +711,8 @@ cookie@0.3.1:
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
 
 core-js@^2.4.0:
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.4.tgz#f2c8bf181f2a80b92f360121429ce63a2f0aeae0"
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.5.tgz#b14dde936c640c0579a6b50cabcc132dd6127e3b"
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
