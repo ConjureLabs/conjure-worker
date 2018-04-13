@@ -21,7 +21,7 @@
   "homepage": "https://github.com/ConjureLabs/conjure-worker#readme",
   "dependencies": {
     "@conjurelabs/db": "1.0.2",
-    "@conjurelabs/err": "0.0.2",
+    "@conjurelabs/err": "0.1.0",
     "@conjurelabs/utils": "0.0.1",
     "aws-sdk": "2.185.0",
     "body-parser": "^1.18.1",
