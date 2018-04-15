@@ -683,7 +683,7 @@ configstore@^3.0.0:
 
 "conjure-core@git+ssh://git@github.com:ConjureLabs/conjure-core.git":
   version "0.0.0"
-  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#e10df9b3c7eaf3ce8b89cebe813a8959e4baa053"
+  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#499fe55836e44968772b1d8f2190f677f1bb8e96"
   dependencies:
     aws-sdk "2.222.1"
     bee-queue "1.2.2"
