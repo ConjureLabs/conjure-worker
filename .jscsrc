@@ -1,5 +1,5 @@
 {
-  "excludeFiles": [ "node_modules/**", "lib/docker/**", "lib/fargate-reference/**" ],
+  "excludeFiles": [ "node_modules/**" ],
   "disallowTrailingWhitespace": false,
   "requireLineFeedAtFileEnd": false,
   "disallowEmptyBlocks": false,
