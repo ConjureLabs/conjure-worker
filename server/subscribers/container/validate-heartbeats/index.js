@@ -23,7 +23,8 @@ queue.subscribe(async (jobData, done) => {
     if (now - containerRow.creationHeartbeat >= 2 * 60 * 1000) {
       await containerRow
         .set({
-          creationFailed: true
+          creationFailed: true,
+          ecsState: 'failed'
         })
         .save()
     }
