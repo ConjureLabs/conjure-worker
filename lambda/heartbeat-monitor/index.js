@@ -10,6 +10,7 @@ const log = require('conjure-core/modules/log')('lambda.heartbeat-monitor')
     SELECT id
     FROM container
     WHERE ecs_state IN ('spinning up', 'updating')
+    AND creation_failed IS FALSE
     AND creation_heartbeat < $1 - INTERVAL '2 minutes'
   `, [now])
 
@@ -27,6 +28,7 @@ const log = require('conjure-core/modules/log')('lambda.heartbeat-monitor')
       .set({
         ecsState: 'failed',
         isActive: false,
+        creationFailed: true,
         updated: new Date()
       })
       .save()
