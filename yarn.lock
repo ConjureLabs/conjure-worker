@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@conjurelabs/db@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@conjurelabs/db/-/db-1.0.2.tgz#233609eb9f28fada2ea34330700de8578040569f"
+"@conjurelabs/db@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@conjurelabs/db/-/db-1.0.3.tgz#25f5ab9c92adc5747fbc8a6f8e757cb060635b74"
   dependencies:
     "@conjurelabs/err" "0.0.2"
 
@@ -777,8 +777,9 @@ configstore@^3.0.0:
 
 "conjure-core@git+ssh://git@github.com:ConjureLabs/conjure-core.git":
   version "0.0.0"
-  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#5b3a9ce86ca316479d2f2115b5eae60f4a31aedc"
+  resolved "git+ssh://git@github.com:ConjureLabs/conjure-core.git#a01c09475277c900f152000707b4c45ae4cf7482"
   dependencies:
+    "@conjurelabs/db" "1.0.3"
     aws-sdk "2.222.1"
     bee-queue "1.2.2"
     node-yaml "^3.1.1"

@@ -21,7 +21,7 @@ queue.subscribe(async (jobData, done) => {
   const now = new Date()
   for (containerRow of containerResult.rows) {
     if (now - containerRow.creationHeartbeat >= 2 * 60 * 1000) {
-      await containerRow
+      await new DatabaseRow('container', containerRow)
         .set({
           creationFailed: true,
           ecsState: 'failed'
