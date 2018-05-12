@@ -1,11 +1,11 @@
 /*
-  local run:
+  to run locally:
     source ./.hob/.env && node
 
     then
 
     const l = require('./lambda/heartbeat-monitor')
-    l.handler().then(process.exit())
+    l.handler().then(() => { process.exit() }) && 1
  */
 
 module.exports.handler = async function heartbeatMonitor(/* event, context */) {
