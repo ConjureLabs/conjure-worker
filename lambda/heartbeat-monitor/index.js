@@ -9,7 +9,7 @@ const log = require('conjure-core/modules/log')('lambda.heartbeat-monitor')
   const flatlineResult = await query(`
     SELECT id
     FROM container
-    WHERE ecs_state IN ('spinning up', 'updating')
+    WHERE ecs_state = 'spinning up'
     AND creation_failed IS FALSE
     AND creation_heartbeat < $1 - INTERVAL '2 minutes'
   `, [now])
