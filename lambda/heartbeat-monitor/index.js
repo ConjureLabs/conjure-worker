@@ -7,20 +7,11 @@
     const l = require('./lambda/heartbeat-monitor')
     l.handler().then(() => { process.exit() }) && 1
  */
-
 module.exports.handler = async function heartbeatMonitor(/* event, context */) {
-  require('@conjurelabs/utils/process/handle-exceptions')
-
-  const { init, query, DatabaseRow } = require('@conjurelabs/db')
-  const config = require('conjure-core/modules/config')
   const log = require('conjure-core/modules/log')('lambda.heartbeat-monitor')
+  require('../setup')(log)
 
-  // configure db connection
-  init(config.database.pg, {
-    transformCamelCase: true
-  }, (sql, args) => {
-    log.dev.info(sql, process.env.NODE_ENV === 'production' && args ? '---REDACTED---' : args)
-  })
+  const { query, DatabaseRow } = require('@conjurelabs/db')
 
   // heartbeat should only be happening when the container is being _created_
   // not while running or going down
