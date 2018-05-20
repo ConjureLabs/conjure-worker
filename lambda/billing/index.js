@@ -8,7 +8,7 @@ const cachedPlanById = {}
     then
 
     const l = require('./lambda/billing')
-    l.handler().then(() => { process.exit() }) && 1
+    l.handler().then(() => { console.log('done') }) && 1
  */
 module.exports.handler = async function heartbeatMonitor(/* event, context */) {
   const log = require('conjure-core/modules/log')('lambda.billing')
