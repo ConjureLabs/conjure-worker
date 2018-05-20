@@ -20,6 +20,10 @@ queue.subscribe(async (jobData, done) => {
   log.info(`pruning github container (${orgName}/${repoName} --> ${branch})`)
 
   try {
+    await container.stop()
+  } catch(err) {}
+
+  try {
     await container.prune()
   } catch(err) {
     log.error(err)
