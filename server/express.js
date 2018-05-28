@@ -28,7 +28,8 @@ module.exports.getServer = getServer
 module.exports.setRoutes = postRoutes => {
   // only kick up express if we really need to
   if (!postRoutes.length) {
-    return
+    log.info('No exposed routes for worker')
+    return module.exports
   }
 
   const server = getServer()

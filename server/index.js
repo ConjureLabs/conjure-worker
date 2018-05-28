@@ -25,24 +25,24 @@ if (activatedWorkerNotation === undefined) {
   }
 }
 
-const activedWorkersHash = require('./walk.js')
-const activedWorkers = Object.keys(activedWorkersHash)
+const activatedWorkersHash = require('./walk.js')
+const activatedWorkers = Object.keys(activatedWorkersHash)
 const activatedWorkerNotationExpr = new RegExp('^' + activatedWorkerNotation.replace(/\./g, '\\.').replace(/\*/g, '\\w+').replace(/#/g, '.*') + '$')
 const activatedPostRoutes = []
 
-for (let i = 0; i < activedWorkers.length; i++) {
-  if (activatedWorkerNotationExpr.test(activedWorkers[i])) {
-    const worker = require(activedWorkersHash[ activedWorkers[i] ])
+for (const activatedWorker of activatedWorkers) {
+  if (activatedWorkerNotationExpr.test(activatedWorker)) {
+    const worker = require(activatedWorkersHash[ activatedWorker ])
 
     // if it's a route handler, then expose it
     if (typeof worker === 'function') {
       activatedPostRoutes.push({
-        url: '/' + activedWorkers[i].replace(/\./g, '/'),
+        url: '/' + activatedWorker.replace(/\./g, '/'),
         handler: worker
       })
-      log.info(`Activating direct call worker ${activedWorkers[i]}`)
+      log.info(`Activating direct call worker ${activatedWorker}`)
     } else {
-      log.info(`Activating queue worker ${activedWorkers[i]}`)
+      log.info(`Activating queue worker ${activatedWorker}`)
     }
   }
 }
