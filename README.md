@@ -129,11 +129,12 @@ Must be an Ubuntu EC2
 2. save public key as a deploy key on repo, on github
 3. `git clone git@github.com:ConjureLabs/conjure-worker.git`
 4. `sudo apt update`
-5. `curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`
-6. `sudo apt-get install -y nodejs`
-7. `sudo -E npm i -g yarn`
-8. `sudo -E npm i -g pm2`
-9. `sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config `
-10. in proj dir, save `.hob/.env`
-11. in proj dir, `yarn install`
-12. in proj dir, `pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
+5. `sudo apt-get install postgresql postgresql-contrib`
+6. `curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`
+7. `sudo apt-get install -y nodejs`
+8. `sudo -E npm i -g yarn`
+9. `sudo -E npm i -g pm2`
+10. `sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config `
+11. in proj dir, save `.hob/.env`
+12. in proj dir, `yarn install`
+13. in proj dir, `pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
