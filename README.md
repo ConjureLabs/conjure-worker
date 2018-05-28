@@ -144,4 +144,5 @@ Must be an Ubuntu EC2
 17. `sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config `
 18. in proj dir, save `.hob/.env`
 19. in proj dir, `yarn install`
-20. in proj dir, `pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
+20. `sudo chown ubuntu:ubuntu /home/ubuntu/.pm2/rpc.sock /home/ubuntu/.pm2/pub.sock` (may have to try to start first, then do this)
+21. in proj dir, `sudo -E pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
