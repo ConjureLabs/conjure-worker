@@ -60,17 +60,17 @@ module.exports.handler = async function heartbeatMonitor(/* event, context */) {
   const countAccounts = 0
   const countOrgs = 0
   const tlogsByAccountOrgs = pendingBillingResult.rows.reduce((byAccountOrgs, row) => {
-    if (!byOrg[ row.account ]) {
+    if (!byAccountOrgs[ row.account ]) {
       countAccounts++
       byAccountOrgs[ row.account ] = {}
     }
 
-    if (!byOrg[ row.account ][ row.org ]) {
+    if (!byAccountOrgs[ row.account ][ row.org ]) {
       countOrgs++
-      byOrg[ row.account ][ row.org ] = []
+      byAccountOrgs[ row.account ][ row.org ] = []
     }
 
-    byOrg[ row.account ][ row.org ].push(row)
+    byAccountOrgs[ row.account ][ row.org ].push(row)
   }, {})
 
   log.info(`${countAccounts} account${countAccounts.length === 1 ? '' : 's'} (${countOrgs} org${countOrgs === 1 ? '' : 's'} total) will be billed`)
@@ -80,23 +80,23 @@ module.exports.handler = async function heartbeatMonitor(/* event, context */) {
 
   // processing each org
   const uuidv4 = require('uuid/v4')
-  for (const account of tlogsByOrg) {
-    const { accountRow, customer, cards, invalid } = await getAccountRecords(account)
+  for (const account of tlogsByAccountOrgs) {
+    const { accountRow, customer, cards, invalid } = await getAccountRecords(log, account)
     const transactionIdentifier = uuidv4()
 
     if (invalid === true) {
       continue
     }
 
-    for (const org of tlogsByOrg[account]) {
-      await processOrgBilling(org, transactionIdentifier, { row: accountRow, customer, cards }, tlogsByOrg[account][org])
+    for (const org of tlogsByAccountOrgs[account]) {
+      await processOrgBilling(log, org, transactionIdentifier, { row: accountRow, customer, cards }, tlogsByAccountOrgs[account][org])
     }
   }
 
   log.info(`update${rowCount === 1 ? '' : 's'} done`)
 }
 
-async function getAccountRecords(accountId) {
+async function getAccountRecords(log, accountId) {
   const { DatabaseTable } = require('@conjurelabs/db')
 
   const accountRows = await DatabaseTable.select('account', {
@@ -158,7 +158,7 @@ log.info(`${rowCount} row${rowCount === 1 ? '' : 's'} container tlog items will 
       .save()
   })
  */
-async function processOrgBilling(orgId, transactionIdentifier, accountResources, rows) {
+async function processOrgBilling(log, orgId, transactionIdentifier, accountResources, rows) {
   // reference to container rows, by id
   // used track pending row updates
   const rowCents = {}
@@ -199,10 +199,7 @@ async function processOrgBilling(orgId, transactionIdentifier, accountResources,
     }
   }
 
-  const feeSum = Object.keys(rowCents).reduce((total, rowId) => {
-    total += rowCents[rowId]
-    return total
-  })
+  const feeSum = buildCents + ranCents
 
   const friendlyMoney = feeSum.toString().split('')
   while (friendlyMoney.length < 3) {
@@ -238,6 +235,7 @@ async function processOrgBilling(orgId, transactionIdentifier, accountResources,
   }
 
   const batchAll = require('@conjurelabs/utils/Promise/batch-all')
+  const { DatabaseRow } = require('@conjurelabs/db')
   await batchAll(3, Object.keys(rowCents), rowId => {
     return DatabaseRow.update('containerTransactionLog', {
       billedAt,
