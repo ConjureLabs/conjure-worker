@@ -129,7 +129,7 @@ Must be an Ubuntu EC2
 2. save public key as a deploy key on repo, on github
 3. `git clone git@github.com:ConjureLabs/conjure-worker.git`
 4. `sudo apt update`
-5. `sudo apt-get install postgresql postgresql-contrib`
+5. `sudo apt-get install postgresql postgresql-contrib redis-tools`
 6. `curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`
 7. `sudo apt-get install -y nodejs`
 8. `sudo -E npm i -g yarn`
