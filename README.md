@@ -130,11 +130,18 @@ Must be an Ubuntu EC2
 3. `git clone git@github.com:ConjureLabs/conjure-worker.git`
 4. `sudo apt update`
 5. `sudo apt-get install postgresql postgresql-contrib redis-tools`
-6. `curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`
-7. `sudo apt-get install -y nodejs`
-8. `sudo -E npm i -g yarn`
-9. `sudo -E npm i -g pm2`
-10. `sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config `
-11. in proj dir, save `.hob/.env`
-12. in proj dir, `yarn install`
-13. in proj dir, `pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
+6. `sudo apt-get install apt-transport-https ca-certificates curl software-properties-common`
+7. `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+8. `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
+9. `sudo apt-get update`
+10. `sudo apt-get install docker-ce`
+11. `sudo -E usermod -a -G docker $USER`
+12. disconnect from ssh, & reconnect
+13. `curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`
+14. `sudo apt-get install -y nodejs`
+15. `sudo -E npm i -g yarn`
+16. `sudo -E npm i -g pm2`
+17. `sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config `
+18. in proj dir, save `.hob/.env`
+19. in proj dir, `yarn install`
+20. in proj dir, `pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
