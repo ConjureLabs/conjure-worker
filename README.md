@@ -144,5 +144,6 @@ Must be an Ubuntu EC2
 17. `sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config `
 18. in proj dir, save `.hob/.env`
 19. in proj dir, `yarn install`
-20. in proj dir, `sudo -E pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
-21. `sudo chown ubuntu:ubuntu /home/ubuntu/.pm2/rpc.sock /home/ubuntu/.pm2/pub.sock` (or you can't `pm2 logs`)
+20. run `aws configure` and enter the key, secret, & `us-east-1`
+21. in proj dir, `sudo -E pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
+22. `sudo chown ubuntu:ubuntu /home/ubuntu/.pm2/rpc.sock /home/ubuntu/.pm2/pub.sock` (or you can't `pm2 logs`)
