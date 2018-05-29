@@ -130,19 +130,20 @@ Must be an Ubuntu EC2
 3. `git clone git@github.com:ConjureLabs/conjure-worker.git`
 4. `sudo apt update`
 5. `sudo apt-get install postgresql postgresql-contrib redis-tools`
-6. `sudo apt-get install apt-transport-https ca-certificates curl software-properties-common`
-7. `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
-8. `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
-9. `sudo apt-get update`
-10. `sudo apt-get install docker-ce`
-11. `sudo -E usermod -a -G docker $USER`
-12. disconnect from ssh, & reconnect
-13. `curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`
-14. `sudo apt-get install -y nodejs`
-15. `sudo -E npm i -g yarn`
-16. `sudo -E npm i -g pm2`
-17. `sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config `
-18. in proj dir, save `.hob/.env`
-19. in proj dir, `yarn install`
-20. in proj dir, `sudo -E pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
-21. `sudo chown ubuntu:ubuntu /home/ubuntu/.pm2/rpc.sock /home/ubuntu/.pm2/pub.sock` (or you can't `pm2 logs`)
+6. `sudo apt-get install apt-transport-https ca-certificates curl software-properties-common python-pip`
+7. `pip install awscli --upgrade --user`
+8. `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`
+9. `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`
+10. `sudo apt-get update`
+11. `sudo apt-get install docker-ce`
+12. `sudo -E usermod -a -G docker $USER`
+13. disconnect from ssh, & reconnect
+14. `curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`
+15. `sudo apt-get install -y nodejs`
+16. `sudo -E npm i -g yarn`
+17. `sudo -E npm i -g pm2`
+18. `sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config `
+19. in proj dir, save `.hob/.env`
+20. in proj dir, `yarn install`
+21. in proj dir, `sudo -E pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
+22. `sudo chown ubuntu:ubuntu /home/ubuntu/.pm2/rpc.sock /home/ubuntu/.pm2/pub.sock` (or you can't `pm2 logs`)
