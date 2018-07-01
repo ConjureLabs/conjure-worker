@@ -64,11 +64,11 @@ You must use a process arg to define the subscription notation. Wildcards (`*`) 
 E.g.
 
 ```bash
-CONJURE_WORKER_NOTATION="food.dinner.pizza" yarn run dev
-CONJURE_WORKER_NOTATION="food.dinner.*" yarn run dev
-CONJURE_WORKER_NOTATION="*" yarn run dev
-CONJURE_WORKER_NOTATION="*.*.pizza" yarn run dev
-CONJURE_WORKER_NOTATION="#.pizza" yarn run dev
+CONJURE_WORKER_NOTATION="food.dinner.pizza" npm run dev
+CONJURE_WORKER_NOTATION="food.dinner.*" npm run dev
+CONJURE_WORKER_NOTATION="*" npm run dev
+CONJURE_WORKER_NOTATION="*.*.pizza" npm run dev
+CONJURE_WORKER_NOTATION="#.pizza" npm run dev
 ```
 
 As per [RabbitMQ's convention for topic names](https://www.rabbitmq.com/tutorials/tutorial-five-python.html):
@@ -76,6 +76,8 @@ As per [RabbitMQ's convention for topic names](https://www.rabbitmq.com/tutorial
 `*` can substitute for exactly one word
 
 `#` can substitute for zero or more words
+
+To run everything: `CONJURE_WORKER_NOTATION="#" npm run dev`
 
 ## BeeQueue
 
@@ -139,11 +141,10 @@ Must be an Ubuntu EC2
 12. disconnect from ssh, & reconnect
 13. `curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`
 14. `sudo apt-get install -y nodejs`
-15. `sudo -E npm i -g yarn`
-16. `sudo -E npm i -g pm2`
-17. `sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config `
-18. in proj dir, save `.hob/.env`
-19. in proj dir, `yarn install`
-20. run `aws configure` and enter the key, secret, & `us-east-1`
-21. in proj dir, `sudo -E pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
-22. `sudo chown ubuntu:ubuntu /home/ubuntu/.pm2/rpc.sock /home/ubuntu/.pm2/pub.sock` (or you can't `pm2 logs`)
+15. `sudo -E npm i -g pm2`
+16. `sudo chown -R $USER:$(id -gn $USER) /home/ubuntu/.config `
+17. in proj dir, save `.hob/.env`
+18. in proj dir, `npm install`
+19. run `aws configure` and enter the key, secret, & `us-east-1`
+20. in proj dir, `sudo -E pm2 start ./bash/pm2/conjure-worker.sh --name "conjure-worker"`
+21. `sudo chown ubuntu:ubuntu /home/ubuntu/.pm2/rpc.sock /home/ubuntu/.pm2/pub.sock` (or you can't `pm2 logs`)
