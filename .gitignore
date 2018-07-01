@@ -2,6 +2,5 @@
 *.log
 node_modules
 .profile
-package-lock.json
 *.rdb
 .hob/.env
